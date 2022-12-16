@@ -8,14 +8,16 @@
 stringstream FileLoader::LoadFile(string filename)
 {
 	stringstream ss;
-	ifstream ifs(filename);
-	
+	ifstream ifs;
+	ifs.open(filename, ios::in);
+	if (ifs.fail())
+		return ss;
+
 	string s;
-	while (getline(ifs, s)) {
-		ItemData data;
-		size_t at = s.find_first_of('\t');
-		string key = s.substr(0, at);
-		s = s.substr(at + 1);
+	while (!ifs.eof()) {
+		getline(ifs, s);
+
+		ss << s << "\n";
 	}
 	ifs.close();
 	return ss;
@@ -23,11 +25,14 @@ stringstream FileLoader::LoadFile(string filename)
 
 void FileLoader::SaveFile(string filename, stringstream ss)
 {
-	ofstream ofs(filename, ios::out);
+	ofstream ofs;
+	ofs.open(filename, ios::out);
+	if (ofs.fail())
+		return;
 
 	string s;
 	while (ss >> s) {
-		ofs << s;
+		ofs << s << "\n";
 	}
 
 	ofs.close();

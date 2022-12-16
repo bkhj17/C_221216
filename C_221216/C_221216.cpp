@@ -1,6 +1,8 @@
 ﻿// C_221216.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
 #include "Framework.h"
+#include "FileLoader.h"
+#include <sstream>
 using namespace std;
 
 bool compare(int& l, int& r) {
@@ -9,10 +11,21 @@ bool compare(int& l, int& r) {
 
 int main()
 {
+	DataManager::Get();
 
-	DataManager::Get()->LoadItemData();
+	Store store;
+	store.ShowItems();
+	
+	vector<int> arr = { 5, 3, 2, 4, 1 };
+	for (auto i : arr)
+		cout << i << " ";
+	cout << endl;
 
+	sort(arr.begin(), arr.end());
 
+	for (auto i : arr)
+		cout << i << " ";
+	cout << endl;
 
 	DataManager::Delete();
 

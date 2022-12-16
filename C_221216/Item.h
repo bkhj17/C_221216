@@ -22,6 +22,17 @@ public:
 	inline bool operator<(const Item& other) {
 		return price < other.price;
 	}
+
+	inline bool operator<= (const Item & other) {
+		return price <= other.price;
+	}
+	inline bool operator>(const Item& other) {
+		return price > other.price;
+	}
+
+	static bool Compare(Item* l, Item* r) {
+		return *l < *r;
+	}
 private:
 	int price;
 	string name;

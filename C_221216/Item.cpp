@@ -20,4 +20,5 @@ Item::~Item()
 
 void Item::ShowInfo()
 {
+	cout << name << " " << price << "¿ø";
 }

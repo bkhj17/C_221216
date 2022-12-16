@@ -12,12 +12,13 @@ public:
 	}
 	static void Delete() { if (instance) delete instance; }
 
-
-	void LoadItemData();
-
+	ItemData GetItemData(int key);
+	map<int, ItemData>& GetItemDatas() { return itemDatas; }
 private:
+	void LoadItemData();
 	static DataManager* instance;
 
-	DoublyLinkedList<ItemData> itemList;
+	//DoublyLinkedList<ItemData> itemList;
+	map<int, ItemData> itemDatas;	//키는 중복되선 안됨
 };
 

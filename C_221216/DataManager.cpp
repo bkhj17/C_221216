@@ -5,17 +5,22 @@ DataManager* DataManager::instance = nullptr;
 
 DataManager::DataManager()
 {
+	LoadItemData();
 }
 
 DataManager::~DataManager()
 {
 }
 
+ItemData DataManager::GetItemData(int key)
+{
+	return itemDatas[key];
+}
+
 void DataManager::LoadItemData()
 {
-	ifstream ifs("ItemTable.csv", ios::in);
-
-	ItemData data;
+	ifstream ifs;
+	ifs.open("ItemTable.csv", ios::in);
 
 	bool isFirstLine = true;
 	while (!ifs.eof()) {
@@ -34,7 +39,10 @@ void DataManager::LoadItemData()
 		tmp = tmp.substr(at + 1);
 		data.price = std::stoi(tmp);
 
-		itemList.PushBack(data);
+		//itemDatas.insert(pair<int, ItemData>(data.key, data));
+		//itemDatas.insert(make_pair(data.key, data));
+		//itemDatas.insert({data.key, data});
+		itemDatas[data.key] = data;
 	}
 
 	ifs.close();
