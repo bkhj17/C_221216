@@ -15,17 +15,6 @@ int main()
 
 	Store store;
 	store.ShowItems();
-	
-	vector<int> arr = { 5, 3, 2, 4, 1 };
-	for (auto i : arr)
-		cout << i << " ";
-	cout << endl;
-
-	sort(arr.begin(), arr.end());
-
-	for (auto i : arr)
-		cout << i << " ";
-	cout << endl;
 
 	DataManager::Delete();
 
